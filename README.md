@@ -5,7 +5,7 @@
 ### 1. Handle Data
 * LoadDataSet
     1. load training-data.txt file 
-        * Consume the data into a more convenient file for later implementation
+        * Consume the data into a more developer-friendly file for later implementation
         
 ### 2. class perceptron_learning():
 #### (This class is for updating weights of textbook classifiers)
@@ -35,14 +35,13 @@
         * Use formula pow((a-b),2) and sum them up
 
 * getNeighbors
-    1. Users input k
-    2. Using already exists euclideanDistance function to get the similarity from training instances and testing instances
+    1. Using already exists euclideanDistance function to get the similarity from training instances and testing instances
         * All training_examples to use for one test_example
         * `distance.append` pairs of `(training_example[x], distance)`
         * `sort(key=operator.itemgetter(1))` will give: 
         A *function* that grabs the *index=1* item from a list-like object
         
-    3. Get K closest neighbors and return then
+    2. Get K (3) closest neighbors and return then
 
 * getResponse
     1.  Allowing each neighbor to vote for their class attribute, and take the majority vote as the prediction.
@@ -58,8 +57,9 @@
     * create subset (10 examples for a subset)
 * subset_eval_textbook
     1. calculate epsilon by possibility and predicted result by sub_classifiers (use 3 NN)
-        * If 3 NN prediction is the same as true label, ex = 1, else ex = 0.
-        * Multiply and sum up the `ex*p` result to calculate epsilon. `𝜖i = S j=1 m   pi(xj)ei(xj) `
+        * If 3 NN prediction is the same as true label,ex = 1, else ex = 0.
+        * Multiply and sum up the `ex*p` result to calculate epsilon. ![](https://i.imgur.com/8TqY3jr.jpg)
+
         * Calculate Beta by epsilon. `𝛽i =𝜖i  ∕ (1-𝜖i) `
     2. Modify the probabilities of correctly classfied examples.
         * By  `pi+1(xj) = pi(xj) · 𝛽i `
@@ -74,7 +74,7 @@
         * probability update by 
             * correct examples: `p2(xj) = p1(xj) ·𝛽1`
 
-            * incorrect examples : `p2(xj) = p1(xj) /𝛽1
+            * incorrect examples : ` p2(xj) = p1(xj) /𝛽1`
     
 * subset_classification_textbook
     1. Use classifiers to classify each subset(by 3 NN)
@@ -84,14 +84,14 @@
 * textbook_version_classify
     1. Initialize probabilities by 1/ 90
     2. Use `subset_classification_textbook` for 9 times to classify 9 subsets
-    3. Use `master_classifier_textbook` to modify classifiers' weights
+    3. Use `master_classifier_textbook` to update classifiers' weights and vote for the final prediction
     4. Use `master_classifier_textbook_predict` to predict testing-data.txt
     5. Get the accuracy of prediction
     
 * original_version_classify
     1. Initialize probabilities by 1/ 90
     2. Use `subset_classification_original` for 9 times to classify 9 subsets
-    3. Use `master_classifier_original` to modify classifiers' weights
+    3. Use `master_classifier_original` to vote for the final prediction
     4. Use `master_classifier_original_predict` to predict testing-data.txt
     5. Get the accuracy of prediction
    
